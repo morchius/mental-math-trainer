@@ -4,26 +4,34 @@ import time
 import random
 speak = wincl.Dispatch("Sapi.SpVoice")
 
-# speak.Rate = .01
+speak.Rate = .01
 voices = speak.GetVoices()
-speak.Voice = voices[1]
 # for voice in voices:
 #    print(voice.getDescription())
 
-def two_by_two():
-	rand = np.random.randint(10,100,size=2)
-	print()
-	print(" {} * {}".format(rand[0], rand[1]))
-	print()
-	speak.Speak("{} times {}".format(rand[0], rand[1]))
-	start = time.clock()
-	input("Press <ENTER> for solution")
-	print()
-	end = time.clock()
-	print(" {}".format(rand[0]*rand[1]))
-	speak.Speak("{}".format(rand[0]*rand[1]))
-	print()
-	print("Time: {} sec ({} min)".format(np.round(end-start, 1), np.round((end-start)/60, 2)))
+def two_by_two(lang = "de"):
+    # set language
+    if lang == "en":
+        speak.Voice = voices[1]
+        times = "times"
+    elif lang == "de":
+        speak.Voice = voices[0]
+        times = "mal"
+    else:
+        raise Exception("Language needs to be either 'en' or 'de'!")
+    rand = np.random.randint(10,100,size=2)
+    print()
+    print(" {} * {}".format(rand[0], rand[1]))
+    print()
+    speak.Speak("{} {} {}".format(rand[0], times, rand[1]))
+    start = time.clock()
+    input("Press <ENTER> for solution")
+    print()
+    end = time.clock()
+    print(" {}".format(rand[0]*rand[1]))
+    speak.Speak("{}".format(rand[0]*rand[1]))
+    print()
+    print("Time: {} sec ({} min)".format(np.round(end-start, 1), np.round((end-start)/60, 2)))
 
 def three_by_one():
     left = np.random.randint(100,1000)
