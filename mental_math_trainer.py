@@ -2,16 +2,22 @@ import win32com.client as wincl
 import numpy as np
 import time
 import random
-speak = wincl.Dispatch("SAPI.SpVoice")
+speak = wincl.Dispatch("Sapi.SpVoice")
+
+# speak.Rate = .01
+voices = speak.GetVoices()
+speak.Voice = voices[1]
+# for voice in voices:
+#    print(voice.getDescription())
 
 def two_by_two():
 	rand = np.random.randint(10,100,size=2)
 	print()
 	print(" {} * {}".format(rand[0], rand[1]))
 	print()
-	speak.Speak("{} mal {}".format(rand[0], rand[1]))
+	speak.Speak("{} times {}".format(rand[0], rand[1]))
 	start = time.clock()
-	input("Press space bar for solution")
+	input("Press <ENTER> for solution")
 	print()
 	end = time.clock()
 	print(" {}".format(rand[0]*rand[1]))
@@ -25,9 +31,9 @@ def three_by_one():
     print()
     print(" {} * {}".format(left, right))
     print()
-    speak.Speak("{} mal {}".format(left, right))
+    speak.Speak("{} times {}".format(left, right))
     start = time.clock()
-    input("Press space bar for solution")
+    input("Press <ENTER> for solution")
     print()
     end = time.clock()
     print(" {}".format(left*right))
