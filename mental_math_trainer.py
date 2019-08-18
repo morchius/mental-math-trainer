@@ -148,7 +148,6 @@ def turm_trainer(n_digits = 4):
     start = time.clock()
     input("Press <ENTER> for solution..")
     end = time.clock()
-    print("\nTime: {} sec ({} min)".format(np.round(end-start, 1), np.round((end-start)/60, 2)))
     print("--" * 40)
     tmp = int(num)
     print("\n{} * 2".format(tmp))
@@ -163,6 +162,8 @@ def turm_trainer(n_digits = 4):
         print("\n{} : {}".format(int(tmp), i))
         tmp = tmp / i
     print("\n{}".format(int(tmp)))
+    print("--" * 40)
+    print("\nTime: {} sec ({} min)".format(np.round(end-start, 1), np.round((end-start)/60, 2)))
     return(True)
     
     
